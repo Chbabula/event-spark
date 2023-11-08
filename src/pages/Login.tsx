@@ -1,6 +1,6 @@
-import Container from "../components/atom/Container";
+import Container from "../components/atoms/Container";
 import { ExclamationCircleIcon } from "@heroicons/react/20/solid";
-import Card from "../components/atom/Card";
+import Card from "../components/atoms/Card";
 import { useContext, useState } from "react";
 import axios from "axios";
 import AppAlert from "../utility/AppAlert";

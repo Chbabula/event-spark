@@ -3,14 +3,17 @@ import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
 import { BrowserRouter } from 'react-router-dom'
-import AlertContextProvider from './context/ContextAlert.tsx'
+import AlertContextProvider from '././context/AlertContext.tsx'
+import UserContextProvider from './context/UserContext.tsx'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <BrowserRouter>
-    <AlertContextProvider>
-      <App />
-    </AlertContextProvider>
+      <AlertContextProvider>
+        <UserContextProvider>
+          <App />
+        </UserContextProvider>
+      </AlertContextProvider>
     </BrowserRouter>
   </React.StrictMode>,
 )
