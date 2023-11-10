@@ -31,6 +31,9 @@ const AddEventForm = () => {
   const handleSubmit = (e: any) => {
     e.preventDefault();
 
+    console.log(category);
+    
+
     // api call
     axios
       .post(`${import.meta.env.VITE_BASE_URL}/api/v1/admin/event`, {
@@ -227,7 +230,10 @@ const AddEventForm = () => {
         name="category"
         className="my-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
         value={category}
-        onChange={(e) => setCategory(e.target.value)}
+        onChange={(e) =>  {
+          console.log(e.target.value);
+          
+          setCategory(e.target.value)}}
       >
         <option value="TECH">Tech</option>
         <option value="MOVIE">Movies</option>
