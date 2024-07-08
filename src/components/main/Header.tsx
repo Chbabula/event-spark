@@ -12,17 +12,19 @@ const navigation = [
   { name: "Music", href: "#", current: false },
   { name: "Standup", href: "#", current: false },
 ];
+
 const userNavigation = [
   { name: "Your Profile", href: "#" },
   { name: "Settings", href: "#" },
   { name: "Sign out", href: "#" },
 ];
+
 const userNavigationOnLogout = [
   { name: "Login", href: "login" },
   { name: "Signup", href: "signup" },
 ];
 
-function classNames(...classes: any) {
+function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
@@ -78,7 +80,7 @@ export default function Header() {
                 </Disclosure.Button>
               </div>
               <div className="hidden lg:relative lg:z-10 lg:ml-4 lg:flex lg:items-center">
-                {userContext.userInfo.username == "admin" && (
+                {userContext?.userInfo?.username === "admin" && (
                   <Link
                     to={"/admin"}
                     className="text-white mr-4 border p-2 rounded-lg"
@@ -96,7 +98,7 @@ export default function Header() {
                 </button>
 
                 {/* User Profile & Login/Signup - Desktop View */}
-                {userContext.isUserInfo() ? (
+                {userContext?.isUserInfo() ? (
                   <Menu as="div" className="relative ml-4 flex-shrink-0">
                     <div>
                       <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
@@ -140,6 +142,7 @@ export default function Header() {
                   <div>
                     {userNavigationOnLogout.map((item) => (
                       <Link
+                        key={item.name}
                         to={item.href}
                         className={classNames(
                           false
@@ -198,10 +201,10 @@ export default function Header() {
               ))}
             </div>
             <div className="border-t border-gray-700 pb-3 pt-4">
-              {userContext.isUserInfo() && (
+              {userContext?.isUserInfo() && (
                 <div className="flex items-center px-4">
                   <div className="flex-shrink-0">
-                    <div className="h-10 w-10 rounded-full bg-white flex justify-center items-center text-2xl font-semibold	">
+                    <div className="h-10 w-10 rounded-full bg-white flex justify-center items-center text-2xl font-semibold">
                       {userContext.userInfo.name[0]}
                     </div>
                     {/* <img className="h-10 w-10 rounded-full" src={user.imageUrl} alt="" /> */}
@@ -225,7 +228,7 @@ export default function Header() {
                 </div>
               )}
               <div className="mt-3 space-y-1 px-2">
-                {userContext.isUserInfo() &&
+                {userContext?.isUserInfo() &&
                   userNavigation.map((item) => (
                     <Disclosure.Button
                       key={item.name}
@@ -237,9 +240,10 @@ export default function Header() {
                     </Disclosure.Button>
                   ))}
 
-                {!userContext.isUserInfo() &&
+                {!userContext?.isUserInfo() &&
                   userNavigationOnLogout.map((item) => (
                     <Link
+                      key={item.name}
                       to={item.href}
                       className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
                     >
